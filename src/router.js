@@ -4,14 +4,47 @@ import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
+// npm install nprogress
+
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      component: () =>
+        import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout.vue"),
+      children: [
+        {
+          path: "/home",
+          name: "home",
+          component: Home
+        }
+      ]
+    },
+    {
+      path: "/user",
+      // component: { render: h => h("router-view") },
+      component: () =>
+        import(/* webpackChunkName: "layout" */ "./layouts/UserLayout.vue"),
+      children: [
+        {
+          path: "/user",
+          redirect: "/user/login"
+        },
+        {
+          path: "/user/login",
+          name: "login",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./views/User/Login.vue")
+        },
+        {
+          path: "/user/register",
+          name: "register",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./views/User/Register.vue")
+        }
+      ]
     },
     {
       path: "/about",

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import NotFound from "./views/404.vue";
 
 Vue.use(Router);
 
@@ -15,6 +16,25 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout.vue"),
       children: [
+        {
+          path: "/",
+          redirect: "/dashboard/analysis"
+        },
+        {
+          path: "/dashboard",
+          name: "dashboard",
+          meta: { icon: "dashboard", title: "仪表盘" },
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "/dashboard/analysis",
+              name: "analysis",
+              meta: { title: "分析页" },
+              component: () =>
+                import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis")
+            }
+          ]
+        },
         {
           path: "/home",
           name: "home",
@@ -54,6 +74,12 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "*",
+      name: "404",
+      hideInMenu: true,
+      component: NotFound
     }
   ]
 });

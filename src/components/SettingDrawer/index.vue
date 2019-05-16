@@ -8,14 +8,29 @@
       :visible="visible"
       width="300px"
     >
-      <template v-solt:handle>
+      <template v-slot:handle>
         <div class="handle" @click="visible = !visible">
           <a-icon :type="visible ? 'close' : 'setting'"></a-icon>
         </div>
       </template>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <div>
+        <h2>整体风格</h2>
+        <a-radio-group
+          :value="$route.query.navTheme || 'dark'"
+          @change="e => handleSettingChange('navTheme', e.target.value)"
+        >
+          <a-radio value="dark">黑色</a-radio>
+          <a-radio value="light">白色</a-radio>
+        </a-radio-group>
+        <h2>导航模式</h2>
+        <a-radio-group
+          :value="$route.query.navLayout || 'left'"
+          @change="e => handleSettingChange('navLayout', e.target.value)"
+        >
+          <a-radio value="left">左侧</a-radio>
+          <a-radio value="top">顶部</a-radio>
+        </a-radio-group>
+      </div>
     </a-drawer>
   </div>
 </template>
@@ -23,20 +38,18 @@
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
+      navTheme: "dark",
+      navLayout: "left"
     };
   },
   methods: {
-    showDrawer() {
-      this.visible = true;
-    },
     onClose() {
       this.visible = false;
+    },
+    handleSettingChange(type, value) {
+      this.$router.push({ query: { ...this.$route.query, [type]: value } });
     }
-  },
-  created: function() {
-    this.showDrawer();
-    // this.onClose();
   }
 };
 </script>

@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <Authorized :authority="['admin']">
+      <h1>{{ msg }}</h1>
+      123456
+    </Authorized>
   </div>
 </template>
 

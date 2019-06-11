@@ -1,9 +1,16 @@
 <template>
-  <div>analysis</div>
+  <div>
+    <Chart />
+  </div>
 </template>
 
 <script>
-export default {};
+import Chart from "../../components/Chart";
+export default {
+  components: {
+    Chart
+  }
+};
 </script>
 
 <style></style>

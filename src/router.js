@@ -55,6 +55,14 @@ const router = new Router({
               meta: { title: "基础表单" },
               component: () =>
                 import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
+            },
+            {
+              path: "/form/step-form",
+              name: "stepform",
+              hideChildrenInMenu: true,
+              meta: { title: "分布表单" },
+              component: () =>
+                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm")
             }
           ]
         },

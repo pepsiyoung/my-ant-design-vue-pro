@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <div>第二步</div>
 </template>
 
 <script>

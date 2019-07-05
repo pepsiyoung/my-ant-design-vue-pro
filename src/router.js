@@ -62,7 +62,25 @@ const router = new Router({
               hideChildrenInMenu: true,
               meta: { title: "分布表单" },
               component: () =>
-                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm")
+                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
+              children: [
+                {
+                  path: "/form/step-form",
+                  redirect: "/form/step-form/info"
+                },
+                {
+                  path: "/form/step-form/info",
+                  name: "info",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1")
+                },
+                {
+                  path: "/form/step-form/confirm",
+                  name: "confirm",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
+                }
+              ]
             }
           ]
         },

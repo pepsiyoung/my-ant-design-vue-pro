@@ -36,6 +36,13 @@ export default {
   components: {
     "sub-menu": SubMenu
   },
+  // watch: {
+  //   "$route.path": function(val) {
+  //     console.log(val);
+  //     this.selectedKeys = this.selectedKeysMap[val];
+  //     this.openKeys = this.collapsed ? [] : this.openKeysMap[val];
+  //   }
+  // },
   data() {
     const menuData = this.getMenuData(this.$router.options.routes);
     return {

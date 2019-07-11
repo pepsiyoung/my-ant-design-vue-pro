@@ -79,6 +79,12 @@ const router = new Router({
                   name: "confirm",
                   component: () =>
                     import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
+                },
+                {
+                  path: "/form/step-form/result",
+                  name: "result",
+                  component: () =>
+                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3")
                 }
               ]
             }

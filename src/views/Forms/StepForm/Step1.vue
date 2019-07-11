@@ -6,11 +6,20 @@
         :label-col="formItemLayout.labelCol"
         :wrapper-col="formItemLayout.wrapperCol"
       >
-        <a-input></a-input>
+        <a-input
+          v-decorator="[
+            'payAccount',
+            {
+              initialValue: step.payAccount,
+              rules: [{ required: true, message: '请输入付款账号' }]
+            }
+          ]"
+          placeholder="请输入付款账号"
+        />
       </a-form-item>
-      <a-from-item>
+      <a-form-item>
         <a-button type="primary" @click="handleSubmit">下一步</a-button>
-      </a-from-item>
+      </a-form-item>
     </a-form>
   </div>
 </template>
@@ -25,6 +34,11 @@ export default {
         wrapperCol: { span: 14 }
       }
     };
+  },
+  computed: {
+    step() {
+      return this.$store.state.form.step;
+    }
   },
   methods: {
     handleSubmit() {

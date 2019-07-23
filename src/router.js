@@ -91,6 +91,22 @@ const router = new Router({
           ]
         },
         {
+          path: "/test",
+          name: "test",
+          meta: { icon: "form", title: "测速", authority: ["admin"] },
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "/test/sampe1",
+              name: "sample1",
+              hideChildrenInMenu: true,
+              meta: { title: "示例1" },
+              component: () =>
+                import(/* webpackChunkName: "form" */ "./views/Test/Sample1")
+            }
+          ]
+        },
+        {
           path: "/home",
           name: "home",
           component: Home
